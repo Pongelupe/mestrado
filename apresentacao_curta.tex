@@ -270,35 +270,6 @@
         \end{figure}
 \end{frame}
 
-\begin{frame}{Integration Driver - 2nd Step*}
-        \begin{block}{Overview}
-                \begin{enumerate}
-                        \item Get the stop intervals
-                        \item Generate the expected time using \textit{TripExpectedTimeGenerator}
-                \end{enumerate}
-        \end{block}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[width = \textwidth]{images/couplepoints.png}
-                \caption{Example of bus stop couples and their distance}
-        \end{figure}
-\end{frame}
-
-\begin{frame}{\textit{TripExpectedTimeGenerator}}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.25]{images/TripExpectedTimeGenerator.png}
-        \end{figure}
-        \begin{block}{Default Implementation key ideas}
-                \begin{itemize}
-                        \item Stop times are incremental in the trip
-                                and are incremented at each stop.
-                        \item $arrival\_time \rightarrow departure\_time$
-                        \item The bus {\em should} travel the trip in average speed
-                        \item Minor deviations to the original $departure\_time$
-                \end{itemize}
-        \end{block}
-\end{frame}
 
 \begin{frame}{Integration Driver - 3rd Step}
         \begin{figure}[H]
@@ -342,18 +313,17 @@
 \subsection{PondiônsTracker-BH}
 \begin{frame}{PondiônsTracker-BH}
         \begin{block}{Overview}
-                \textit{PondiônsTracker-BH}\footnote{Available at \url{https://github.com/Pongelupe/PondionsTracker-BH}} is a \textit{PondiônsTracker}'s specialization created to
-                deal with Belo Horizonte's Public Transportation Network particularities. So, we have implemented our own \textit{Real-Time Data collector}, and we have overwritten the method \textit{getIdsLineByRouteId} from the 
-                \textit{RealTimeService}.
+                \textit{PondiônsTracker-BH}\footnote{Available at \url{https://github.com/Pongelupe/PondionsTracker-BH}} is our \textit{PondiônsTracker}'s specialization to
+                deal with Belo Horizonte's  Network. So, we have implemented our own \textit{Real-Time Data collector}, and we have overwritten a method from the \textit{RealTimeService} from the \textit{DataProviders}.
+        \end{block}
+\end{frame}
+\begin{frame}{Belo Horizonte’s RealTimeService}
+        \begin{block}{\textit{BHRealTimeService} - \textit{getIdsLineByRouteId}}
+                This happens due to a  \textbf{one-to-many} relationship between the GTFS and the real-time data.
                 \begin{itemize}
                         \item $BHTrans \rightarrow GTFS$
                         \item $Transfacil \rightarrow Traffic\ API$
                 \end{itemize}
-        \end{block}
-\end{frame}
-\begin{frame}{Belo Horizonte’s RealTimeService}
-        \begin{block}{\textit{BHRealTimeService}}
-                \textit{BHRealTimeService} {\em extends} \textit{DefaultRealTimeService} and overrides \textit{getIdsLineByRouteId} method. There is a \textbf{one-to-many} relationship between the GTFS and the real-time data.
         \end{block}
 \end{frame}
 
@@ -385,13 +355,6 @@
                         \item \textbf{Sundays}: 15,273 / 18,266 = 83.61\% 
                 \end{itemize}
         \end{block}
-\end{frame}
-\begin{frame}{Schedule Analysis}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[width=\textwidth]{images/histograms.png}
-                \caption{Histograms Schedule-Filled Percentage per Routes}
-        \end{figure}
 \end{frame}
 \begin{frame}{Schedule Analysis - Schedule Deviations}
         \begin{block}{Schedule Deviations}
@@ -479,13 +442,6 @@ nor completely stopped!
                         \item $\#14790997$ - \textit{Avenida Dom Pedro II 1980} with $6,692$ delays 
                 \end{enumerate}
         \end{block}
-\end{frame}
-\begin{frame}{Delay Analysis}
-        \begin{figure}[H]
-                \centering
-                \caption{Minutes out of schedule of bus stops $\#14788408$ distributed throughout the day}
-                \includegraphics[width=\textwidth]{images/stops1.png}
-        \end{figure}
         \begin{block}{Constants} 
                 \begin{enumerate}
                         \item \textit{Global Ahead Average}: $13.42$ minutes 
