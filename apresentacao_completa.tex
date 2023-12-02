@@ -55,7 +55,7 @@
 \end{frame}
 
 \begin{frame}{Contents}%[allowframebreaks]{Sumário}
-        \tableofcontents[currentsection, hideothersubsections]
+        \tableofcontents[ hideothersubsections]
         %\tableofcontents[currentsection, hideothersubsections]
 \end{frame}
 
@@ -98,75 +98,17 @@
 
 
 \section{Theoretical Reference}
-\subsection{Smart Cities}
-\begin{frame}{Smart Cities}
-        \begin{block}{Definition}
-                \citealt{pardo2011} describe
-                a smart city is a city whose "data infuses information into its physical infrastructure to improve
-                conveniences, facilitate mobility, add efficiencies, conserve energy,
-                improve the quality of air and water, identify problems, and fix them
-                quickly, recover rapidly from disasters, and collect data to make better
-                decisions, deploy resources effectively, and share data to enable
-                collaboration across entities and domains".
-        \end{block}
-\end{frame}
-
-\begin{frame}{Smart Cities}
-        \begin{block}{Urban Computing}
-                Interdisciplinary toolkit that uses the data generated in urban spaces by multiple sources to tackle issues that a city could face.
+\begin{frame}{Theoretical Reference}
+        \begin{block}{Main Ideas}
                 \begin{itemize}
-                        \item Transportation, health, and tourism
-                        \item Sensors, devices, vehicles, buildings, and humans
-                \end{itemize}
-        \end{block}
-        \begin{block}{Human Mobility}
-                Human mobility aims to study the movement of humans through time and space. And its
-                impacts on the environment.
-                \begin{itemize}
-                        \item \textbf{Why do people migrate?}
+                        \item Smart Cities
+                        \item Urban Computing
+                        \item Human Mobility
+                        \item Graphs and Complex Network
                 \end{itemize}
         \end{block}
 \end{frame}
 
-\subsection{GTFS and GTFS-RT}
-
-\begin{frame}{General Transit Feed Specification (GTFS)}
-        \begin{columns}
-                \column{0.5\textwidth}  		
-                \begin{block}{Definition}
-                        Defines a common format for
-                        public transportation schedules and associated geographic information
-                \end{block}
-                \begin{block}{Main ideas}
-                        \begin{itemize}
-                                \item Open Data
-                                \item Many Apps, SDKs, libraries, and tools 
-                        \end{itemize}
-                \end{block}
-                \column{0.5\textwidth}
-                \centering
-                \begin{figure}[H]
-                        \centering
-                        \includegraphics[scale=0.35]{images/GTFS_class_diagram.png}
-                        \caption{GTFS class diagram}
-                \end{figure}
-        \end{columns}
-\end{frame}
-
-\begin{frame}{General Transit Feed Specification Real-Time (GTFS-RT)}
-        \begin{block}{GTFS-RT}
-                GTFS-RT is the real-time extension to GTFS. GTFS-RT allows public transportation agencies to provide real-time updates about:
-                \begin{itemize}
-                        \item Trips
-                        \item Services
-                        \item Vehicles
-                \end{itemize}
-        \end{block}
-\end{frame}
-
-
-
-\subsection{Complex Networks and Graphs}
 \begin{frame}{Complex Networks and Graphs}
         \begin{columns}
                 \column{0.5\textwidth}  		
@@ -197,57 +139,6 @@
 \end{frame}
 
 
-\section{Related Work}
-\begin{frame}{Analytics on Public Transport Delays with Spatial Big Data}
-        \begin{columns}
-                \column{0.5\textwidth}  		
-                \begin{block}{Rome}
-                        \begin{itemize}
-                                \item GTFS and Real-Time traffic API
-                                \item The link the datasets by comparing the
-                                        expected arrival time and the real arrival time within a threshold
-                                \item Average delay for: stops, trip, trip at stop
-                        \end{itemize}
-                \end{block}
-                \column{0.5\textwidth}
-                \begin{block}{Stockholm}
-                        \begin{itemize}
-                                \item GTFS-RT 
-                                \item Are the delays in the public transport network spatially dependent?
-                                \item What are the factors contributing to delays?
-                                \item What methods best suit their analysis of large real-time data streams?
-                        \end{itemize}
-                \end{block}
-        \end{columns}
-\end{frame}
-
-\begin{frame}{Discovering the space–time dimensions of schedule padding and delay from GTFS and real-time transit data}
-        \begin{block}{Overview}
-                \begin{itemize}
-                        \item Public Transportation Network molded as a complex network
-                        \item Legal, physical, or social constraints produce delays
-                        \item Using schedule padding to mitigate delays
-                \end{itemize}
-        \end{block}
-\end{frame}
-
-\begin{frame}{Constructing a routable retrospective transit timetable from a real-time vehicle location feed and GTFS}
-        \begin{block}{Overview}
-                \begin{itemize}
-                        \item Enrich GTFS with real-time data unifying the two datasets in Toronto
-                        \item Algorithm outline after monitoring vehicles in real-time:
-                                \begin{enumerate}
-                                        \item Delimiting trips and blocks;
-                                        \item Spatial matching and positional error handling;
-                                        \item Determining stop times;
-                                        \item Constructing the retrospective GTFS package.
-                                \end{enumerate}
-                        \item Open Source Routing Machine's map-matching algorithms
-                \end{itemize}
-
-        \end{block}
-\end{frame}
-
 \section{PondiônsTracker}
 \subsection{Architecture and Entities}
 \begin{frame}{PondiônsTracker}
@@ -255,7 +146,7 @@
                 \textit{PondiônsTracker}\footnote{Available at \url{https://github.com/Pongelupe/PondionsTracker/}} 
                 is a framework to enrich
                 GTFS data with real-time data. 
-                The name \textit{PondiônsTracker} is a small gag from the sonority of the expression{ \em bus stop}
+                The name \textit{PondiônsTracker} is a small gag from the sonority of the expression{ \em 'bus stop'}
                 when pronounced in Portuguese with the accent from Minas Gerais.
         \end{block}
 \end{frame}
@@ -282,28 +173,6 @@
         \end{figure}
 \end{frame}
 
-\begin{frame}{Data Acquisition - GTFS Data Importer}
-        \begin{columns}
-                \column{0.5\textwidth}  		
-                \begin{block}{Basic Structure Needed}
-                        The \textit{schema.sql} defines the two following tables:
-                        \begin{itemize}
-                                \item {\em  real\_time\_bus}
-                                \item {\em  shapes\_summarized}
-                        \end{itemize}
-                \end{block}
-                \column{0.5\textwidth}
-                \centering
-                \begin{figure}[H]
-                        \centering
-                        \includegraphics[scale=0.25]{images/real_time_bus_ER.png}
-                \end{figure}
-                \begin{figure}[H]
-                        \centering
-                        \includegraphics[scale=0.25]{images/shapes_summarized_ER.png}
-                \end{figure}
-        \end{columns}
-\end{frame}
 
 \begin{frame}{Data Acquisition - GTFS Data Importer}
         \begin{figure}
@@ -313,48 +182,23 @@
         \end{figure}
 \end{frame}
 
-\begin{frame}{Data Acquisition - GTFS Data Importer}
-        \begin{columns}
-                \column{0.5\textwidth}  		
-                \begin{block}{Populate {\em  shapes\_summarized}}
-                        A SQL script which takes the \textit{shapes} table grouped by the $shape\_id$
-                        as input to the \textit{PostGIS}'s function { \em ST\_MakeLine} that produces a $LineString$ from the given points.
-                \end{block}
-                \column{0.5\textwidth}
-                \begin{figure}
-                        \centering
-                        \includegraphics[width=\textwidth]{images/route.png}
-                \end{figure}
-        \end{columns}
-\end{frame}
 
 \begin{frame}{Data Acquisition - Real-Time Data Collector}
-        \begin{columns}
-                \column{0.5\textwidth}  		
-                \begin{block}{Considerations}
-                        This component incorporates the data 
-                        from real-time traffic \textit{API} provided by some external source into {\em  real\_time\_bus}
-                \end{block}
-                \begin{block}{Example of an entry}
-                        A bus $b$ of line 123 is at a bus stop
-                        near a drugstore and has already traveled 3 km on its route at 4 p.m.
-                \end{block}
-                \column{0.5\textwidth}
+        \begin{block}{Considerations}
+                This component incorporates the data 
+                from real-time traffic \textit{API} provided by some external source.
+        \end{block}
+        \begin{figure}[H]
                 \centering
-                \begin{figure}[H]
-                        \centering
-                        \includegraphics[scale=0.25]{images/real_time_bus_ER.png}
-                \end{figure}
-        \end{columns}
+                \includegraphics[width=\textwidth]{images/entry_mercado.png}
+        \end{figure}
 \end{frame}
 \begin{frame}{Data Providers}
         \begin{figure}[H]
                 \centering
-                \includegraphics[scale=0.45]{images/dataProviderED.drawio.png}
-                \caption{\textit{PondiônsTracker}'s architecture diagram}
+                \includegraphics[width=\textwidth]{images/datamodule.png}
         \end{figure}
 \end{frame}
-
 
 \begin{frame}{Data Providers}
         \begin{figure}[H]
@@ -386,14 +230,6 @@
                 \caption{Integration Driver Activity Diagram}
         \end{figure}
 \end{frame}
-\begin{frame}{Integration Driver - 1st Step}
-        \begin{block}{Overview}
-                \begin{enumerate}
-                        \item  Given a $route\_short\_name$ and a target date, it uses the GTFSService to retrieve the Route.
-                        \item Has to generate the expected time?
-                \end{enumerate}
-        \end{block}
-\end{frame}
 \begin{frame}{Has to generate the expected time?}
         \begin{figure}[H]
                 \centering
@@ -424,10 +260,6 @@
 \end{frame}
 
 \begin{frame}{\textit{TripExpectedTimeGenerator}}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.25]{images/TripExpectedTimeGenerator.png}
-        \end{figure}
         \begin{block}{Default Implementation key ideas}
                 \begin{itemize}
                         \item Stop times are incremental in the trip
@@ -446,28 +278,6 @@
                 \caption{Integration Driver Activity Diagram}
         \end{figure}
 \end{frame}
-\begin{frame}{Integration Driver - 3rd Step}
-        \begin{block}{Overview}
-                \begin{enumerate}
-                        \item Get line ids from \textit{RealTimeService} using \textit{getRouteByRouteShortName}
-                        \item Get entries using \textit{getEntriesByDtEntryAndLineIds}
-                        \item Extract real-time trips from entries using \textit{TripExtractor}
-                \end{enumerate}
-        \end{block}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.25]{images/TripExtractor.png}
-        \end{figure}
-\end{frame}
-\begin{frame}{\textit{TripExtractor}}
-        \begin{block}{Default Implementation Premises}
-                \begin{enumerate}
-                        \item The entries must be from the same $idVehicle$
-                        \item The entries must be sorted by $dtEntry$ in order to preserve their chronology
-                        \item The $currentDistanceTraveled$ can only increase for the same trip
-                \end{enumerate}
-        \end{block}
-\end{frame}
 
 \begin{frame}{Integration Driver - 4th Step}
         \begin{figure}[H]
@@ -481,14 +291,9 @@
                 \begin{itemize}
                         \item Linking static data to real-time data
                         \item Compare schedules using padding
-                        \item Different values for $maxTripInitialShifting$
-                        \item For a scheduled trip there are many {\em candidate trips}
+                        \item For a \textbf{scheduled trip} there are many \textbf{candidate trips}
                 \end{itemize}
         \end{block}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.25]{images/TripMatcher.png}
-        \end{figure}
 \end{frame}
 
 \begin{frame}{Integration Driver - 5th Step}
@@ -498,60 +303,12 @@
                 \caption{Integration Driver Activity Diagram}
         \end{figure}
 \end{frame}
-\begin{frame}{\textit{TripSelector}}
-        \begin{block}{Default Implementation key ideas}
-                \begin{itemize}
-                        \item {\em Select} the $RealTimeTrip$ trip that better fits the $Trip$
-                        \item Removing unwanted trips
-                                \begin{itemize}
-                                        \item The displacement from the bus 
-                                                garage to a bus stop
-                                        \item Bus breaking down.
-                                        \item The bus' communication system is malfunctioning.
-                                        \item A bus' last entry recorded is still en route.
-                                \end{itemize}
-                \end{itemize}
-        \end{block}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.25]{images/TripSelector.png}
-        \end{figure}
-\end{frame}
-\begin{frame}{\textit{TripSelector}}
-        \begin{columns}
-                \column{0.5\textwidth} 
-                \begin{block}{Default Implementation Premises}
-                        \begin{enumerate}
-                                \item The last entries $dtEntry$ must be after the $departureTime$;
-                                \item The trip must have traveled at least a $tripMinPercentageTraveled$ percentage of the \textit{Trip}'s $length$.
-                        \end{enumerate}
-                \end{block}
-                \column{0.5\textwidth}
-                \begin{block}{Default Implementation Considerations}
-                        \begin{itemize}
-                                \item Selects the trip with the latest $departureTime$ that fills the preconditions
-                                \item 85\% for trip minimum percentage traveled
-                        \end{itemize}
-                \end{block}
-        \end{columns}
-\end{frame}
 
 \begin{frame}{Integration Driver - 6th Step}
         \begin{figure}[H]
                 \centering
                 \includegraphics[width = \textwidth]{images/integrationDriverAD(6th_step).png}
                 \caption{Integration Driver Activity Diagram}
-        \end{figure}
-\end{frame}
-\begin{frame}{\textit{TripBusStopLinker}}
-        \begin{block}{Default Implementation Overview}
-                \begin{itemize}
-                        \item Link a real-time Trip to the bus stops from a scheduled Trip
-                \end{itemize}
-        \end{block}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[scale=0.25]{images/TripBusStopLinker.png}
         \end{figure}
 \end{frame}
 \begin{frame}{\textit{TripBusStopLinker}}
@@ -609,8 +366,7 @@
         \end{block}
         \begin{figure}[h]
                 \centering
-                \includegraphics[width=\textwidth]{images/mergeExemple.png}
-                \caption{Example of merge of $e_{n-1}$ and $e_n$}
+                \includegraphics[width=\textwidth]{images/9202_empty_set.png}
         \end{figure}
 \end{frame}
 \begin{frame}{\textit{TripMissingEntriesGenerator}}
@@ -693,13 +449,6 @@
                 \end{itemize}
         \end{block}
 \end{frame}
-\begin{frame}{Schedule Analysis}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[width=\textwidth]{images/histograms.png}
-                \caption{Histograms Schedule-Filled Percentage per Routes}
-        \end{figure}
-\end{frame}
 \begin{frame}{Schedule Analysis - Schedule Deviations}
         \begin{block}{Schedule Deviations}
                 Regarding the real-time API, there are collected trips which were not defined at Belo Horizonte's GTFS.
@@ -756,6 +505,12 @@ nor completely stopped!
         \end{columns}
 \end{frame}
 \begin{frame}{Delay Analysis}
+                \begin{block}{Delays distribution over the network}
+                        \begin{itemize}
+                                \item Bus Stop
+                                \item Trips
+                        \end{itemize}
+                \end{block}
         \begin{figure}[H]
                 \centering
                 \includegraphics[width=\textwidth]{images/delays_distribution.png}
@@ -786,13 +541,6 @@ nor completely stopped!
                         \item $\#14790997$ - \textit{Avenida Dom Pedro II 1980} with $6,692$ delays 
                 \end{enumerate}
         \end{block}
-\end{frame}
-\begin{frame}{Delay Analysis}
-        \begin{figure}[H]
-                \centering
-                \caption{Minutes out of schedule of bus stops $\#14788408$ distributed throughout the day}
-                \includegraphics[width=\textwidth]{images/stops1.png}
-        \end{figure}
         \begin{block}{Constants} 
                 \begin{enumerate}
                         \item \textit{Global Ahead Average}: $13.42$ minutes 
@@ -801,9 +549,13 @@ nor completely stopped!
         \end{block}
 \end{frame}
 \begin{frame}{Delay Analysis}
+        \begin{columns}
+                \column{0.5\textwidth}  		
         \begin{block}{Stops $\#14793268$ and $\#14790997$} 
-                The stops $\#14793268$ and $\#14790997$ are the first and third most delayed in the Public Transportation Network, respectively.
-                Also, these stops are \textbf{462} meters from each other on the same avenue, \textit{Avenida Pedro II}, and share \textbf{2,590} common trips, so they are spatially related.
+                \begin{itemize}
+                        \item \textbf{462} meters 
+                        \item \textbf{2,590} trips 
+                \end{itemize}
         \end{block}
         \begin{block}{\textit{Local Out-Of-Schedule Average}} 
                 \begin{itemize}
@@ -811,6 +563,16 @@ nor completely stopped!
                         \item $\#14790997$: $19.68$ minutes 
                 \end{itemize}
         \end{block}
+                \column{0.5\textwidth}
+                \begin{figure}[t]
+                        \centering
+                        \includegraphics[width=\linewidth]{images/bustop1_pedroii.png}
+                \end{figure}
+                \begin{figure}[t]
+                        \centering
+                        \includegraphics[width=\linewidth]{images/bustop2_pedroii.png}
+                \end{figure}
+        \end{columns}
 \end{frame}
 \begin{frame}{Delay Analysis}
         \begin{figure}[H]
@@ -920,12 +682,6 @@ with those defined at the GTFS.
                 \end{block}
         \end{columns}
 \end{frame}
-\begin{frame}{Comparison Between Generated and Real Data}
-        \begin{figure}[H]
-                \centering
-                \includegraphics[height=6.5cm,width=10cm]{images/stops2_generated.png}
-        \end{figure}
-\end{frame}
 
 
 \subsection{Limitations}
@@ -949,22 +705,16 @@ with those defined at the GTFS.
 \begin{frame}{Conclusion}
         \begin{block}{Concluding Remarks}
                 \begin{itemize}
-                        \item Comparison between the expected schedule with the actual schedule
                         \item Delays in Belo Horizonte follow a {\em log-normal} distribution
                         \item Analysis using data generated with the \textit{Trip Expected Time Generator}
                         \item \textit{PondiônsTracker} as a viable option when GTFS-RT is unavailable
                 \end{itemize}
-
         \end{block}
-\end{frame}
-\begin{frame}{Conclusion}
         \begin{block}{Future Work}
                 \begin{itemize}
                         \item Futher explore Belo Horizonte Public Transportation Network using deep learning for graphs approaches 
                         \item Reproduce Belo Horizonte's results with other cities
-                        \item Explore the delays analysis combining temporal and spatial dimensions
                 \end{itemize}
-
         \end{block}
 \end{frame}
 
@@ -972,5 +722,9 @@ with those defined at the GTFS.
 
 \begin{frame}{Conclusion}
         Thanks!!
+                \begin{figure}[H]
+                        \centering
+                        \includegraphics[scale=0.20]{images/thanks.png}
+                \end{figure}
 \end{frame}
 \end{document}
