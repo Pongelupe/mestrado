@@ -96,19 +96,72 @@
         \end{block}
 \end{frame}
 
-
 \section{Theoretical Reference}
-\begin{frame}{Theoretical Reference}
-        \begin{block}{Main Ideas}
+\subsection{Smart Cities}
+\begin{frame}{Smart Cities}
+        \begin{block}{Definition}
+                \citealt{pardo2011} describe
+                a smart city is a city whose "data infuses information into its physical infrastructure to improve
+                conveniences, facilitate mobility, add efficiencies, conserve energy,
+                improve the quality of air and water, identify problems, and fix them
+                quickly, recover rapidly from disasters, and collect data to make better
+                decisions, deploy resources effectively, and share data to enable
+                collaboration across entities and domains".
+        \end{block}
+\end{frame}
+
+\begin{frame}{Smart Cities}
+        \begin{block}{Urban Computing}
+                Interdisciplinary toolkit that uses the data generated in urban spaces by multiple sources to tackle issues that a city could face.
                 \begin{itemize}
-                        \item Smart Cities
-                        \item Urban Computing
-                        \item Human Mobility
-                        \item Graphs and Complex Network
+                        \item Transportation, health, and tourism
+                        \item Sensors, devices, vehicles, buildings, and humans
+                \end{itemize}
+        \end{block}
+        \begin{block}{Human Mobility}
+                Human mobility aims to study the movement of humans through time and space. And its
+                impacts on the environment.
+                \begin{itemize}
+                        \item \textbf{Why do people migrate?}
                 \end{itemize}
         \end{block}
 \end{frame}
 
+\subsection{GTFS and GTFS-RT}
+
+\begin{frame}{General Transit Feed Specification (GTFS)}
+        \begin{columns}
+                \column{0.5\textwidth}  		
+                \begin{block}{Definition}
+                        Defines a common format for
+                        public transportation schedules and associated geographic information
+                \end{block}
+                \begin{block}{Main ideas}
+                        \begin{itemize}
+                                \item Open Data
+                                \item Many Apps, SDKs, libraries, and tools 
+                        \end{itemize}
+                \end{block}
+                \column{0.5\textwidth}
+                \centering
+                \begin{figure}[H]
+                        \centering
+                        \includegraphics[scale=0.35]{images/GTFS_class_diagram.png}
+                        \caption{GTFS class diagram}
+                \end{figure}
+        \end{columns}
+\end{frame}
+
+\begin{frame}{General Transit Feed Specification Real-Time (GTFS-RT)}
+        \begin{block}{GTFS-RT}
+                GTFS-RT is the real-time extension to GTFS. GTFS-RT allows public transportation agencies to provide real-time updates about:
+                \begin{itemize}
+                        \item Trips
+                        \item Services
+                        \item Vehicles
+                \end{itemize}
+        \end{block}
+\end{frame}
 \begin{frame}{Complex Networks and Graphs}
         \begin{columns}
                 \column{0.5\textwidth}  		
@@ -734,9 +787,5 @@ with those defined at the GTFS.
 
 \begin{frame}{Conclusion}
         Thanks!!
-                \begin{figure}[H]
-                        \centering
-                        \includegraphics[scale=0.20]{images/thanks.png}
-                \end{figure}
 \end{frame}
 \end{document}
