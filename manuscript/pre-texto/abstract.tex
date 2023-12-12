@@ -1,0 +1,31 @@
+% Abstract
+\begin{abstract}
+% Diminuir espaçamento entre título e texto
+\vspace{-1cm}
+% Texto do resumo, em inglês: sem paragrafo, justificado, com espaçamento 1,5 cm
+\onehalfspacing
+\noindent
+
+A smart city \ac{PTN} provides mobility services to millions of people daily. 
+Urban computing provides a
+toolkit to handle acquisition, integration, and analysis, which translates to the improvement of the human mobility
+of the citizens, mitigating and notifying delays, for instance.
+Regarding the PTN, many methods rely on two specifications: \ac{GTFS} and \ac{GTFS-RT}. The first represents the static schedule information, and the second introduces real-time updates from trips, services, and vehicle positions. Despite the qualitative leap with the GTFS-RT specification, GTFS-RT
+is not as well-adopted as the GTFS because of the non-existence of a matching identifier between the static and real-time data. In this context, we present \textit{PondiônsTracker}\footnote{Available at \url{https://github.com/Pongelupe/PondionsTracker/}} which is a {\em loose coupling} Java framework designed for enriching GTFS data with real-time data to enable delays analysis and to estimate arrivals. So, we present \textit{PondiônsTracker-BH}\footnote{Available at \url{https://github.com/Pongelupe/PondionsTracker-BH}} that is a \textit{PondiônsTracker}'s specialization created to
+deal with Belo Horizonte's PTN particularities originating from Belo Horizonte's real-time \ac{API} 
+which we collected every minute for eleven days straight in July and August 2023, summarizing over 246 million entries 
+representing almost 30 Gigabytes.
+\textit{PondiônsTracker-BH} presented a $76.08\%$ of the matched trips for the schedule during the observation period, 
+then $156,628$ out of $205,884$ scheduled trips were identified in the real-time data. Analyzing these $156,628$ matched trips,
+we show the delays focus and show that the delays in Belo Horizonte are spatial and temporal related
+and are {\em log-normal} distributed. In other words, most of the delays in Belo Horizonte occur at a few bus stops, and these stops are \textit{physically} close to each other and share the same \textit{temporal} patterns.
+
+% Espaçamento para as palavras-chave
+\vspace*{.75cm}
+
+% Palavras-chave: sem parágrafo, alinhado à esquerda
+\noindent Keywords: Urban Computing, Human Mobility, Complex Networks, Public Transportation Network.
+% Segunda linha de palavras-chave, com espaçamento.
+%\indent\hspace{1.4cm} Keyword.
+
+\end{abstract}

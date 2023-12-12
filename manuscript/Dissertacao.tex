@@ -1,0 +1,347 @@
+% Modelo de Dissertação do Mestrado em Informática da PUC - Alterado para cumprir a normalização de 2011
+%\documentclass[a4paper,brazil,ruledheader,normaltoc,capchap]{abnt}
+
+% Para impressão frente e verso (normalização 2011)
+\documentclass[a4paper,brazil,ruledheader,normaltoc,capchap,twoside,openany]{abnt_pucmg_utf8}
+
+% Não esquecer das alterações no arquivo abnt.cls
+% Se estiver usando o Kile no Ubuntu o arquivo fica armazenado em /usr/share/texmf/tex/latex/abntex.
+% Comentar a linha 967 
+% \vspace*{30pt}% - Linha comentada para reduzir o espaçamento entre o topo da página e o título \chapter
+% Alterar a linha 1143
+% \vspace*{-30pt} % - Parâmetro alterado de 30pt para -30pt para reduzir o espaçamento entre o top da página e o título do apêndice
+% Alterar a linha 985
+%\vspace*{-30pt}\par % - Parâmetro alterado de 0pt para -30pt para reduzir o espaçamento entre o top da página e o título \chapter*
+% Alterar a linha 991
+% Parâmetro alterado de 45pt para 30pt para reduzir o espaçamento entre o texto e o título \chapter*
+
+% Não esquecer das alterações no arquivo acronym.sty
+% Se estiver usando o Kile no Ubuntu o arquivo fica armazenado em /usr/share/texmf-texlive/tex/latex/acronym
+% Alterar a linha 225
+%\item[\protect\AC@hypertarget{#1}{\acsfont{\normalfont{#2}}} --] #3% - Inserir separador entre acrônimo/descrição e remover o negrito com o normalfont
+
+% Pacote para definir explicitamente as margens das páginas
+\usepackage[a4paper,left=3cm,right=2cm,top=3cm,bottom=2cm]{geometry}
+
+%\usepackage{units}
+% Utilize da seguinte forma \unit[78,6]{mA}
+
+% Pacote para gerenciar siglas
+\usepackage[printonlyused]{acronym}
+
+% Merge em duas células (linhas diferentes)
+\usepackage{multirow}
+
+% Pacote para citação e referências seguindo ABNT no sistema (AUTOR, Data)
+%\usepackage[alf, bibjustif,abnt-emphasize=bf]{abntcite}
+\usepackage[alf, abnt-emphasize=em, abnt-thesis-year=title]{abntcite}
+% @article An article from a journal or magazine 
+% @inproceedings An article in a conference proceedings
+% Força que o tipo de ênfase no nome do simpósio seja em caixa alta
+\renewcommand{\emph}{\textsc}
+
+% Pacote para múltiplos arquivos .bib
+\usepackage{multibib}
+%\newcites{pub}{Refer\^encias das publica\c{c}\~oes}
+
+% Pacote de adequação do formato ABNT para normas da PUCMinas
+\usepackage{abnt-PPGInf-PUCMG}
+
+% Pacotes utilitários
+\usepackage{graphicx}
+\usepackage{longtable}
+
+% Pacote para fixar a figura no local desejado
+\usepackage{float}
+
+% Pacote para adicionar simbolos as informações de rodapé
+\usepackage[symbol]{footmisc}
+
+\usepackage[all]{xy}
+%\usepackage[tight]{subfigure}	% Permite a criação de subfiguras
+\usepackage{url,amsmath}	% Permite melhorias na codificação de fórmulas
+%\usepackage{amsthm}		% Permite melhorias na escrita de teoremas
+\usepackage{amssymb}		% Permite utlização de simbolos matemáticos avançados
+
+
+% Alterar o espaçamento da margem no algoritmo
+
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
+
+\usepackage{setspace}
+
+% Pacote para rotação de tabelas/figuras
+\usepackage{rotating}
+
+% Pacotes para criação de cronograma/tabela colorida
+\usepackage{color}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{colortbl}
+
+%\definecolor{lightgray}{gray}{0.9}
+
+% Pacote para possibilitar o uso do setboolean para forçar formatos de página diferentes do padrão do documento
+\usepackage{ifthen}
+
+% Para inserir captions (nova normalização 2011)
+\usepackage[size=normalsize,labelfont=bf,textfont={bf},labelsep=endash]{caption}
+\captionsetup[subfloat]{labelfont=bf,textfont={bf}}
+
+% Usado para reduzir espaçamentos entre itens (alíneas, enumerações) com o compactitem
+\usepackage{paralist}
+
+% Alterar para sequencial a numeração de figuras e tabelas
+\captionsetup{figurewithin=none}
+\captionsetup{tablewithin=none}
+
+\setlength{\LTcapwidth}{\textwidth}
+
+% Para o subsubsection aparecer no sumário 
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% Para inserir referências via links - não funciona para abntex
+%\usepackage[colorlinks=true,pdfstartview=FitV,linkcolor=blue,citecolor=blue,urlcolor=blue,hyperindex,pagebackref=true,pdftex,breaklinks]{hyperref}
+%\usepackage[pdftex]{hyperref}
+
+% Para criar lista de gráficos
+\floatstyle{plaintop}
+\newfloat{grafico}{H}{loq}
+\restylefloat*{grafico}
+\floatname{grafico}{Gráfico} 
+
+% Para gerar subfiguras usando o subfloat
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{subcaption}
+%\newsubfloat[position=bottom,listofformat=subsimple]{grafico}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{lightblue}{rgb}{0.0,0.0,0.9}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tabularx}
+
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  columns=fullflexible,
+  showstringspaces=false,
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=none,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title  
+  commentstyle=\color{gray}\upshape
+}
+
+
+\lstdefinelanguage{XML}
+{
+  morestring=[s][\color{mauve}]{"}{"},
+  morestring=[s][\color{black}]{>}{<},
+  morecomment=[s]{<?}{?>},
+  morecomment=[s][\color{dkgreen}]{<!--}{-->},
+  stringstyle=\color{black},
+  identifierstyle=\color{lightblue},
+  keywordstyle=\color{red},
+  morekeywords={xmlns,xsi,noNamespaceSchemaLocation,type,id,x,y,source,target,version,tool,transRef,roleRef,objective,eventually}% list your attributes here
+}
+
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage[inline]{enumitem}
+% define estilo de posicionamento na caixa
+\newsavebox{\leftfig}
+\newsavebox{\rightfig}
+
+%\renewcommand{\ALG@name}{Algoritmo}
+%\renewcommand{\listalgorithmname}{Lista de Algoritmos}
+
+
+\citeoption{abnt-etal-cite=1, abnt-and-type=e}
+
+% the bibtex style generates this command, but it's not defined
+%\newcommand{\optionaltextstyle}{}
+
+
+\newcommand{\optionaltextstyle}{}
+
+% PRÉ-TEXTUAIS %%
+\begin{document}
+
+% Para forçar que elementos pré-textuais (da capa até o sumário) sejam impressos no anverso da folha
+\setboolean{@twoside}{false}
+
+\autor{Pedro Pongelupe Lopes}
+
+% Coloque o título em caixa alta. É o padrão da PUC.
+% Vá no arquivo abnt-PPGInf-PUCMG.sty e procure por esse título (linha 575). Altere para o seu título em caixa alta. Isso será utilizado na folha de aprovação.
+\titulo{
+PONDIÔNSTRACKER: A FRAMEWORK BASED ON GTFS-RT TO IDENTIFY DELAYS AND ESTIMATE ARRIVALS DYNAMICALLY IN PUBLIC TRANSPORTATION NETWORK}
+
+
+\orientador[Advisor:]{Prof. Humberto T.
+\\ Marques-Neto}
+
+% Se não tiver, co-orientador, comente a próxima linha.
+%\coorientador[Co-orientador:]{Professor}
+
+% Texto
+\comentario{Dissertation presented to the Post-graduate
+Program in Informatics at Pontifical Catholic
+University of Minas Gerais, as a partial requirement to obtain Master’s degree in Informatics.
+}
+
+
+% Instituição
+
+
+% Local
+\local{Belo Horizonte}
+
+% Data
+\data{2023}
+\capa
+%Para forçar que a ficha catalográfica seja impressa no verso da folha de aprovação
+\setboolean{@twoside}{false}
+
+% Gera a folha de rosto
+\folhaderosto
+
+% Ficha catalográfica
+\include{pre-texto/ficha-catalografica}
+
+% Para forçar que elementos pré-textuais (da capa até o sumário) sejam impressos no anverso da folha
+\setboolean{@twoside}{false}
+
+% Folha de aprovação
+\include{pre-texto/folha-aprovacao}
+
+% Dedicatória
+%\include{pre-texto/dedicatoria}
+
+% Agradecimentos
+\include{pre-texto/agradecimentos}
+
+% Epígrafe
+\include{pre-texto/epigrafe}
+
+% Resumo
+%\include{pre-texto/resumo}
+
+% Abstract
+\include{pre-texto/abstract}
+
+\makeatletter
+\renewcommand\numberline[1]{
+	\leftskip 0em
+	\rightskip 1.6em
+	\parfillskip -\rightskip
+	\parindent 0em
+	\@tempdima 2.0em
+	\vspace{0em} \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	FIGURE \normalfont #1 -- }
+\makeatother
+
+% Lista de figuras
+\listoffigures
+
+\makeatletter
+\renewcommand\numberline[1]{
+	\leftskip 0em
+	\rightskip 1.6em
+	\parfillskip -\rightskip
+	\parindent 0em
+	\@tempdima 2.0em
+	\vspace{0em} \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	TABLE \normalfont #1 -- }
+\makeatother
+
+% Lista de tabelas
+\listoftables
+
+\makeatletter
+\renewcommand\numberline[1]{
+	\leftskip 0em
+	\rightskip 1.6em
+	\parfillskip -\rightskip
+	\parindent 0em
+	\@tempdima 2.0em
+	\vspace{0.5em} \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	CHART \normalfont #1 -- }
+\makeatother
+
+% Lista de graficos
+%\listof{grafico}{Lista de Graficos}
+
+% Lista de siglas
+\input{pre-texto/lista-siglas.tex}
+
+\makeatletter
+\renewcommand\numberline[1]{#1\hspace{0.8em}}
+\makeatother
+
+%% Altera para espaçamento simples a partir daqui
+\singlespacing
+
+\tableofcontents
+% Altera para espaçamento 1,5 a partir daqui
+\onehalfspacing
+
+
+
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+
+%% TEXTUAIS 
+% Para forçar que elementos textuais e pós-textuais sejam impressos no anverso e verso das folhas
+\setboolean{@twoside}{true}
+% Altere o número da página para o correto. Conte todas as páginas frente e verso, menos a capa, nclusive a ficha catalográfica até a página do primeiro capítulo.
+\setcounter{page}{15}
+
+% Capítulos
+% Para forçar que o capítulo de introdução comece no anverso
+\setboolean{@openright}{true}
+\include{texto/cap1}
+% Os demais capítulos não precisam começar no anverso
+\setboolean{@openright}{false}
+\include{texto/cap2}
+\include{texto/cap3}
+\include{texto/cap4}
+\include{texto/cap5}
+\include{texto/cap6}
+
+% PÓS-TEXTUAIS %%
+% Bibliografia no arquivo 'Dissertacao.bib'
+% Alterar o título das referências para somente 'Referências'
+%\renewcommand{\bibname}{References}
+\renewcommand{\refname}{References}
+\bibliographystyle{abnt-alf}
+\bibliography{Dissertacao.bib}
+
+% Para forçar que os apêndices e anexos comecem no anverso
+%\setboolean{@openright}{true}
+
+\end{document}

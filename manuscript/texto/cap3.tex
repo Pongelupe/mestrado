@@ -1,0 +1,122 @@
+% Nome do capítulo
+\chapter{Related work}
+% Label para referenciar
+\label{cap3}
+
+% Diminuir espaçamento entre título e texto
+\vspace{-1.9cm}
+
+% Texto do capítulo
+
+In this Chapter, we present related work identifying delays 
+and strategies to mitigate them in public transportation networks.
+Also, we approach the issue that GTFS-RT could be unavailable despite
+having GTFS and real-time data and how the literature has dealt to
+this issue.
+
+
+
+\citeonline{delays_bigdata} use the combination of GTFS data and real-time data
+to analyze delays in the public transportation network of Rome and Stockholm, 
+These cities had divergent data available, resulting in differences in the analysis
+used GTFS for the static data. For real-time data,
+Rome's data were provided by the Mobility Control Center of Roma Servizi
+della Mobilità, but there was no identifier to connect the real-time data
+and the static data. So, the link between sets was inferred by comparing the
+expected arrival time and the real arrival time within a threshold. The 
+results show the average delay for a stop, the average delay for a trip, 
+and the average delay for a trip at a stop.
+
+Stockholm's real-time data provided by the Swedish Transportation Administration
+and it was easy to link with the static data, unlikely Rome. Also, the real-time
+data was composed of real-time updates on routes, disruptions, delays, and 
+arrival-departure time of buses, trains, trains, and boats at each stop, 
+so characterizing the GTFS-RT specification.
+\citeonline{delays_bigdata} used the dataset to examine
+three questions:
+\begin{enumerate*}
+    \item Are the delays in the public transport network spatially
+dependent?
+    \item What are the factors contributing to delays?
+    \item What methods best suit the analysis of large
+real-time data streams?
+\end{enumerate*}
+The first question approach was to calculate the mode and standard deviation
+of the delays and apply a simple Moran's I test, which determines a
+significant spatial auto-correlation.
+The second was tacked using an OLS model in which the average delay is the dependent variable,
+and maximum speed, road types, number of lines, and number of lanes are the
+independent variables. Finally, regarding the third question, the authors point out 
+that spatially aware, computationally intelligent, and machine-learning techniques
+to work with this kind of dataset.
+
+We replicated the delay analysis that \citeonline{delays_bigdata} had done in Rome, and we discussed the three questions analyzed with Stockholm's data using
+Belo Horizonte data. Belo Horizonte's dataset resembles Rome's because no easy-matching identifier exists. 
+Although, we address the issues
+with a different approach but also incorporating the key ideas of the algorithm used in Rome, as further discussed in Chapter \ref{cap4}.
+
+
+Many papers identify delays in public transportation networks using the GTFS-RT 
+data, despite the differences in measurement and mitigation of delays, it is
+a common approach to model the public transportation network using graph theory.
+\citeonline{GTFS-RT_delays_2017} describe that a random delay along legal, physical, or social constraints are the factors that produce delays. To mitigate these factors,
+the planners added to the schedule 
+a safety margin delay, called schedule padding. 
+Furthermore, the schedule padding
+is given by the time required to operate on any given segment of the route for
+each segment, the padding is the time difference between the fastest and the average time 
+of the remaining entries.
+A fixed value for schedule padding may heavily influence
+the transportation experience by delaying routes without needing to. Then, the takeaway is that
+the padding must be proportional to the random delay, which is caused by some unpredictable factors such as: 
+traffic conditions, wrecked vehicles, or the number of red lights. 
+
+We molded the public transportation networks using graph theory as well,
+and we adapted \citeonline{GTFS-RT_delays_2017}'s concept of schedule padding to 
+measure the 
+delays and to estimate arrival-departure windows. Because the 
+arrival-departure window of a bus to a bus stop depends on whether the bus is
+delayed, or on time, or ahead of schedule, which expresses a negative,
+neutral, positive padding to the expected arrival time, respectively.
+
+%\citeonline{GTFS-RT_delays_2022}.
+
+
+\citeonline{routableTimetableGTFS} point out that GTFS' analysis that researchers
+have been dealing with could be better addressed using real-time data to enrich 
+GTFS data. Because the GTFS is based on schedules, which are projections 
+about the services rather than observations.
+In other words, the research questions should take into account the events
+that interfere with the real composition of the network, the randomness of 
+a random complex network. Despite a brief mention of the GTFS-RT
+specification, \citeonline{routableTimetableGTFS} reveal one common issue with it,
+that is, the non-compatibility of the real-time data and the GTFS. So, they 
+propose an algorithm based on the monitoring of vehicles in real-time as their
+locations are updated to unify the two datasets. After the data collection,
+the algorithm's following steps are: 
+\begin{enumerate*}
+    \item Delimiting trips and blocks;
+    \item Spatial matching and positional error handling;
+    \item Determining stop times;
+    \item Constructing the retrospective GTFS package.
+\end{enumerate*}
+Finally, using the enriched GTFS, they demonstrate the usage in Toronto.
+
+%threashold d %
+The \citeonline{routableTimetableGTFS}'s algorithm is really interesting; we
+approach the real-time data in a very similar outline. 
+To delimit trips, we used the vehicle's current distance en route instead of 
+the headsign. To do spatial matching and positional error handling, they used
+Open Source Routing Machine's map-matching algorithms to match entries to 
+bus stops, we opted for keeping a low-coupling architecture using the 
+Postgis and GTFS. 
+For determining stop times, we used the same approach of estimating time
+by linear interpolation from the surrounding vehicle reports, but we propose 
+a different heuristic to choose the reports to interpolate.
+The architectural decisions we made and our justifications are further explored in
+the following chapter, Chapter \ref{cap4}.
+
+Given the state-of-the-art literature discussed in this chapter,
+this dissertation contributes to GTFS and GTFS-RT because we present
+a tool to link GTFS with real-time data in cities where GTFS-RT is unavailable, allowing analysis such as delay analysis. Then, we contribute to 
+delay analysis due to the reproduction of questions using the proposed framework.

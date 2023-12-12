@@ -1,0 +1,642 @@
+%% $Id: abnt-PPGInf-PUCMG.sty,v 0.1 2009/10/05 11:25:25 gweber Exp $
+%% name of this file abntcite.sty
+%%
+\NeedsTeXFormat{LaTeX2e}
+
+\input{cvs-id.def}
+\CVSExtract$Id: abnt-PPGInf-PUCMG.sty,v 0.1 2009/10/05 11:25:25 gweber Exp $
+\CVSPackage{abnt-PPGInf-PUCMG}{} %substitui \ProvidesPackage (replaces \ProvidesPackage)
+
+% ifthen - conditions in LaTeX
+\PassOptionsToClass{pnumromarab}{abnt}
+
+\RequirePackage{ifthen}
+\RequirePackage[brazil]{babel}
+\RequirePackage[normalem]{ulem}
+
+\PassOptionsToPackage{hyperindex=false}{hyperref}
+%\PassOptionsToPackage{estilo=UFPR}{tabela-simbolos}
+
+\makeatletter	%Para que ele entenda o @
+
+% ** Altera definições da ABNT para adaptar o PUCMG
+
+% ************* CAPA **************
+\renewcommand{\capa}{
+%\setlength{\oddsidemargin}{0cm}
+%\setlength{\textwidth}{\paperwidth-2cm}
+\begin{titlepage}
+\espaco{1.1}
+
+% Figura Logotipo PUCMinas
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.11\textwidth]{imagem/logo_puc}
+\end{figure}
+
+\vspace{-1cm}
+
+\begin{center}
+	\normalsize
+	PONTIFICAL CATHOLIC UNIVERSITY OF MINAS GERAIS\par
+	Post-Graduate Program in Informatics
+\end{center}
+%\vfill
+
+\vspace{3cm}
+
+\begin{center}
+	\begin{espacosimples}
+	\noindent\larger\ABNTautordata\par
+	\end{espacosimples}
+\end{center}
+%\vfill
+
+\vspace{3cm}
+
+\begin{center}
+	\large\ABNTchapterfont\ABNTtitulodata\par
+\end{center}
+
+%\vspace{2cm}
+\vfill
+
+\begin{center}
+	\ABNTlocaldata\par
+	\ABNTdatadata
+\end{center}
+\end{titlepage}
+%\setlength{\oddsidemargin}{3cm-\hoffset-1in}
+%\setlength{\evensidemargin}{2cm-\hoffset-1in}
+%\setlength{\textwidth}{\paperwidth-\oddsidemargin-\hoffset-1in-2cm}
+}% end of \capa
+
+% ******** FOLHA DE ROSTO *********
+\newcommand{\esporient}[2]{
+	\leftskip 0em
+	\@tempdima 5.5em
+	\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	{#1#2\hfil}}
+
+\newcommand{\espcoorient}[2]{
+	\leftskip 0em
+	\@tempdima 7em
+	\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	{#1#2\hfil}}
+
+\renewcommand{\folhaderosto}{
+\begin{titlepage}
+\espaco{1.1}
+
+\begin{center}
+	\large \ABNTautordata
+\end{center}
+
+\vspace{7cm}
+
+\begin{center}
+	\large\ABNTchapterfont\ABNTtitulodata\par
+\end{center}
+
+\vspace{2cm}
+
+\hspace{.4\textwidth}
+\begin{minipage}{.50\textwidth}
+	\begin{espacosimples}
+		\ABNTcomentariodata\par
+	\end{espacosimples}
+\end{minipage}
+
+\hspace{.4\textwidth}
+\begin{minipage}{.45\textwidth}
+	\begin{espacosimples}
+		\esporient{\numberline{\ABNTorientadorname}}{{}\ignorespaces\ABNTorientadordata}
+	\end{espacosimples}
+\end{minipage}
+
+\ABNTifnotempty{\ABNTcoorientadordata}{
+	\hspace{.4\textwidth}
+	\begin{minipage}{.45\textwidth}
+		\begin{espacosimples}
+			\espcoorient{\numberline {\ABNTcoorientadorname}}{{}\ignorespaces\ABNTcoorientadordata}
+		\end{espacosimples}
+	\end{minipage}}
+
+\vfill
+
+\begin{center}
+	\ABNTlocaldata\par
+	\ABNTdatadata
+\end{center}
+
+\end{titlepage}
+
+}% end of \folhaderosto
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% From \@startsection. The only difference is that it calls \@ssect
+% changing the meaning id the first parameter. Now, instead of indentation,
+% it gives section level for TOC purposes.
+\def\ABNTPUCBfstartsection#1#2#3#4#5#6{%
+  \if@noskipsec \leavevmode \fi
+  \par
+  \@tempskipa #4\relax
+  \@afterindenttrue
+  \ifdim \@tempskipa <\z@
+    \@tempskipa -\@tempskipa \@afterindentfalse
+  \fi
+  \if@nobreak
+    \everypar{}%
+  \else
+    \addpenalty\@secpenalty\addvspace\@tempskipa
+  \fi
+  \@ifstar
+    {\ABNTPUCBfssect{#1}{#4}{#5}{#6}}% #3 replaced by #1 here
+    {\@dblarg{\ABNTPUCBfsect{#1}{#2}{#3}{#4}{#5}{#6}}}}
+
+% I change the meaning of the first paramenter here. Instead of an indent
+% skip, it is now the name of the section, for `toc' purposes.
+\def\ABNTPUCBfssect#1#2#3#4#5{%
+  \@tempskipa #3\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #4{%
+         \interlinepenalty \@M \centering
+         \ifthenelse{\boolean{ABNTcapsec}}
+             {\textbf{\MakeUppercase{#5}}}{\textbf{#5}}\@@par}%
+    \endgroup
+    \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#5}}
+    \ifthenelse{\boolean{ABNTincludeintoc}}
+      {\ABNTaddcontentsline{toc}{#1}{\textbf{#5}}}
+     {}
+  \else
+    \def\@svsechd{#4\textbf{#5}%
+      \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#5}}
+      \ifthenelse{\boolean{ABNTincludeintoc}}%
+         {\ABNTaddcontentsline{toc}{#1}{\textbf{#5}}}{}
+    }%
+  \fi
+  \@xsect{#3}}
+
+\def\ABNTPUCBfsect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M
+          \ifthenelse{\boolean{ABNTcapsec}}
+             {\textbf{\MakeUppercase{#8}}}{\textbf{#8}}\@@par}%
+    \endgroup
+    \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#7}}
+    \ABNTaddcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\normalfont\bfseries \csname the#1\endcsname}%
+      \fi
+      \normalfont\textbf{#7}}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec \ifthenelse{\boolean{ABNTcapsec}}
+             {\textbf{\MakeUppercase{#8}}}{\textbf{#8}}}%
+      \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#7}}
+      \ABNTaddcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\normalfont\bfseries \csname the#1\endcsname}%
+        \fi
+        \normalfont\textbf{#7}}}%
+  \fi
+  \@xsect{#5}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% From \@startsection. The only difference is that it calls \@ssect
+% changing the meaning id the first parameter. Now, instead of indentation,
+% it gives section level for TOC purposes.
+\def\ABNTPUCItstartsection#1#2#3#4#5#6{%
+  \if@noskipsec \leavevmode \fi
+  \par
+  \@tempskipa #4\relax
+  \@afterindenttrue
+  \ifdim \@tempskipa <\z@
+    \@tempskipa -\@tempskipa \@afterindentfalse
+  \fi
+  \if@nobreak
+    \everypar{}%
+  \else
+    \addpenalty\@secpenalty\addvspace\@tempskipa
+  \fi
+  \@ifstar
+    {\ABNTPUCItssect{#1}{#4}{#5}{#6}}% #3 replaced by #1 here
+    {\@dblarg{\ABNTPUCItsect{#1}{#2}{#3}{#4}{#5}{#6}}}}
+
+% I change the meaning of the first paramenter here. Instead of an indent
+% skip, it is now the name of the section, for `toc' purposes.
+\def\ABNTPUCItssect#1#2#3#4#5{%
+  \@tempskipa #3\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #4{%
+         \interlinepenalty \@M \centering
+         \ifthenelse{\boolean{ABNTcapsec}}
+             {\textit{\MakeUppercase{#5}}}{\textit{#5}}\@@par}%
+    \endgroup
+    \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#5}}
+    \ifthenelse{\boolean{ABNTincludeintoc}}
+      {\ABNTaddcontentsline{toc}{#1}{\textit{#5}}}
+     {}
+  \else
+    \def\@svsechd{#4\textit{#5}%
+      \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#5}}
+      \ifthenelse{\boolean{ABNTincludeintoc}}%
+         {\ABNTaddcontentsline{toc}{#1}{\textit{#5}}}{}
+    }%
+  \fi
+  \@xsect{#3}}
+
+\def\ABNTPUCItsect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\textit{\@seccntformat{#1}}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M
+          \ifthenelse{\boolean{ABNTcapsec}}
+             {\textit{\MakeUppercase{#8}}}{\textit{#8}}\@@par}%
+    \endgroup
+    \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#7}}
+    \ABNTaddcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\csname the#1\endcsname}%
+      \fi
+      {\textit{#7}}}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec \ifthenelse{\boolean{ABNTcapsec}}
+             {\textit{\MakeUppercase{#8}}}{\textit{#8}}}%
+      \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#7}}
+      \ABNTaddcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname}%
+        \fi
+        {\textit{#7}}}}%
+  \fi
+  \@xsect{#5}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% From \@startsection. The only difference is that it calls \@ssect
+% changing the meaning id the first parameter. Now, instead of indentation,
+% it gives section level for TOC purposes.
+\def\ABNTPUCUlstartsection#1#2#3#4#5#6{%
+  \if@noskipsec \leavevmode \fi
+  \par
+  \@tempskipa #4\relax
+  \@afterindenttrue
+  \ifdim \@tempskipa <\z@
+    \@tempskipa -\@tempskipa \@afterindentfalse
+  \fi
+  \if@nobreak
+    \everypar{}%
+  \else
+    \addpenalty\@secpenalty\addvspace\@tempskipa
+  \fi
+  \@ifstar
+    {\ABNTPUCUlssect{#1}{#4}{#5}{#6}}% #3 replaced by #1 here
+    {\@dblarg{\ABNTPUCUlsect{#1}{#2}{#3}{#4}{#5}{#6}}}}
+
+% I change the meaning of the first paramenter here. Instead of an indent
+% skip, it is now the name of the section, for `toc' purposes.
+\def\ABNTPUCUlssect#1#2#3#4#5{%
+  \@tempskipa #3\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #4{%
+         \interlinepenalty \@M \centering
+         \ifthenelse{\boolean{ABNTcapsec}}
+             {\uline{\MakeUppercase{#5}}}{\uline{#5}}\@@par}%
+    \endgroup
+    \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#5}}
+    \ifthenelse{\boolean{ABNTincludeintoc}}
+      {\ABNTaddcontentsline{toc}{#1}{\uline{#5}}}
+     {}
+  \else
+    \def\@svsechd{#4\uline{#5}%
+      \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#5}}
+      \ifthenelse{\boolean{ABNTincludeintoc}}%
+         {\ABNTaddcontentsline{toc}{#1}{\uline{#5}}}{}
+    }%
+  \fi
+  \@xsect{#3}}
+
+\def\ABNTPUCUlsect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M
+          \ifthenelse{\boolean{ABNTcapsec}}
+             {\uline{\MakeUppercase{#8}}}{\uline{#8}}\@@par}%
+    \endgroup
+    \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#7}}
+    \ABNTaddcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\csname the#1\endcsname}%
+      \fi
+      \uline{#7}}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec \ifthenelse{\boolean{ABNTcapsec}}
+             {\uline{\MakeUppercase{#8}}}{\uline{#8}}}%
+      \@ifundefined{ABNT#1mark}{}{\csname ABNT#1mark\endcsname{#7}}
+      \ABNTaddcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname}%
+        \fi
+        \uline{#7}}}%
+  \fi
+  \@xsect{#5}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Altera o tamanho das fontes dos capítulos e dos apêndices
+\renewcommand{\ABNTchapterfont}{\bfseries}
+\renewcommand{\ABNTchaptersize}{\normalsize}
+\renewcommand{\ABNTsectionfont}{\bfseries}
+\renewcommand{\ABNTanapsize}{\normalsize}
+
+% Altera o espaçamento entre dots
+\renewcommand\@dotsep{2}
+
+% Altera forma de montagem do table of contents
+\renewcommand\l@chapter[2]{
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \ifthenelse{\boolean{ABNTpagenumstyle}}
+        {\renewcommand{\@pnumwidth}{3.5em}}
+        {}
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \normalsize\ABNTtocchapterfont
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      \MakeUppercase{#1}\nobreak\dotfill \nobreak%
+      \ifthenelse{\boolean{ABNTpagenumstyle}}
+         {%
+          \hb@xt@\@pnumwidth{\hss 
+            \ifthenelse{\not\equal{#2}{}}{{\normalfont p.\thinspace#2}}{}}\par
+         }
+         {%
+          \hb@xt@\@pnumwidth{\hss #2}\par
+         }
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+
+\renewcommand\section{\ABNTPUCBfstartsection{section}{1}{\z@}%
+                           {-3.5ex \@plus -1ex \@minus -.2ex}%
+                           {2.3ex \@plus.2ex}%
+                           {\espaco{simples}\normalfont%
+                            \ABNTsectionfont\normalsize}}
+\renewcommand\subsection{\ABNTPUCItstartsection{subsection}{2}{\z@}%
+                           {-3.25ex\@plus -1ex \@minus -.2ex}%
+                           {1.5ex \@plus .2ex}%
+                           {\espaco{simples}\normalfont%
+                            \ABNTsectionfont\normalsize}}
+\renewcommand\subsubsection{\ABNTPUCUlstartsection{subsubsection}{3}{\z@}%
+                           {-3.25ex\@plus -1ex \@minus -.2ex}%
+                           {1.5ex \@plus .2ex}%
+                           {\espaco{simples}\normalfont%
+                            \ABNTsectionfont\normalsize}}
+\renewcommand\paragraph{\ABNTstartsection{paragraph}{4}{\z@}%
+                           {3.25ex \@plus1ex \@minus.2ex}%
+                           {-1em}%
+                           {\espaco{simples}\normalfont%
+                            \ABNTsectionfont\normalsize}}
+\renewcommand\subparagraph{\ABNTstartsection{subparagraph}{5}{\parindent}%
+                           {3.25ex \@plus1ex \@minus .2ex}%
+                           {-1em}%
+                           {\espaco{simples}\normalfont%
+                            \ABNTsectionfont\normalsize}}
+
+% Altera o espaçamento do sumário
+\renewcommand*\l@section{\bfseries\@dottedtocline{1}{0em}{2.3em}}
+\renewcommand*\l@subsection{\itshape\bfseries\@dottedtocline{2}{0em}{3.2em}}
+\renewcommand*\l@subsubsection{\normalfont\bfseries\@dottedtocline{3}{0em}{4.1em}}
+
+%\renewcommand*\l@section{\normalfont\textbf{\thechapter.\@arabic\c@section}}
+%\renewcommand*\l@subsection{\textit{\thesection.\@arabic\c@subsection}}
+%\renewcommand*\l@subsubsection{\normalfont\textbf{\thesubsection .\@arabic\c@subsubsection}}
+%\renewcommand\theparagraph    {\normalfont\thesubsubsection.\@arabic\c@paragraph}
+
+%\renewcommand\@seccntformat[1]{\uline{\csname the#1\endcsname}\hskip 1em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength\belowcaptionskip{10\p@}
+
+\renewcommand*{\@makecaption}[2]{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{\small #1: #2}%
+  \ifdim \wd\@tempboxa >\hsize
+    {\small #1: #2\par}
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+
+% Cria um comando auxiliar para montagem da lista de figuras
+%\newcommand{\figfillnum}[1]{% 
+%  {\hspace{1em}\normalfont\dotfill}\nobreak
+%  \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}\par}
+
+% Cria um comando auxiliar para montagem da lista de tabelas
+%\newcommand{\tabfillnum}[1]{%
+%	{\hspace{1em}\normalfont\dotfill}\nobreak
+%	\hb@xt@\@pnumwidth{\hfil\normalfont #1}{}\par}
+
+% Altera a forma de montagem da lista de figuras
+%\renewcommand*{\l@figure}[2]{
+%	\leftskip 3.1em
+%	\rightskip 1.6em
+%	\parfillskip -\rightskip
+%	\parindent 0em
+%	\@tempdima 2.0em
+%	\vspace{-1em} \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+%	{FIGURA \normalfont #1}\nobreak \figfillnum{#2}}
+
+% Altera a forma de montagem de lista de tabelas
+%\renewcommand*{\l@table}[2]{
+%	\leftskip 3.4em
+%	\rightskip 1.6em
+%	\parfillskip -\rightskip
+%	\parindent 0em
+%	\@tempdima 2.0em
+%	\vspace{-1em} \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+%	{TABELA \normalfont #1}\nobreak \tabfillnum{#2}}
+
+% Define os comandos que montam a lista de símbolos
+%\newcommand{\listadesimbolos}{\pretextualchapter{Lista de Símbolos}\@starttoc{lsb}}
+%\newcommand{\simbolo}[2]{{\addcontentsline{lsb}{simbolo}{\numberline{#1}{#2}}}#1}
+%\newcommand{\l@simbolo}[2]{
+%	\vspace{-0.75cm}
+%	\leftskip 0em
+%	\parindent 0em
+%	\@tempdima 5em
+%	\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+%	{\normalfont #1}\hfil\nobreak\par}
+
+% Define o comando que monta a lista de siglas
+%\newcommand{\listadesiglas}{\pretextualchapter{Lista de Siglas}\@starttoc{lsg}}
+%\newcommand{\sigla}[2]{{\addcontentsline{lsg}{sigla}{\numberline{#1}{#2}}}#1}
+%\newcommand{\l@sigla}[2]{
+%	\vspace{-0.75cm}
+%	\leftskip 0em
+%	\parindent 0em
+%	\@tempdima 5em
+%	\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+%	{\normalfont #1}\hfil\nobreak\par}
+
+% Define o tipo de numeração das páginas
+\renewcommand{\chaptertitlepagestyle}{plain}
+
+% Altera a posição da numeração de páginas dos elementos pré-textuais
+\renewcommand\pretextualchapter{
+	\if@openright\cleardoublepage\else\clearpage\fi
+	\pagestyle{\chaptertitlepagestyle}
+	\global\@topnum\z@
+	\@afterindentfalse
+	\@schapter}
+
+% Altera a posição da numeração de páginas dos elementos textuais
+\renewcommand{\ABNTchaptermark}[1]{
+	\ifthenelse{\boolean{ABNTNextOutOfTOC}}
+		{\markboth{\ABNTnextmark}{\ABNTnextmark}}
+		{\chaptermark{#1}
+		\pagestyle{\chaptertitlepagestyle}}}
+
+% Redefine o tipo de numeração de páginas
+\renewcommand{\ABNTBeginOfTextualPart}{
+	\renewcommand{\chaptertitlepagestyle}{plainheader}
+	\renewcommand{\thepage}{\arabic{page}}
+%	\setcounter{page}{1}
+}
+
+\makeatother
+
+%Altera o tamanho do parágrafo
+\setlength{\parindent}{1.25cm}
+
+% ******* TERMO DE APROVAÇÃO ******
+\providecommand{\ABNTtextoaprovacaodata}{}
+\newcommand{\textoaprovacao}[1]{\renewcommand{\ABNTtextoaprovacaodata}{#1}}
+
+\providecommand{\ABNTprimeiroassinadata}{}
+\newcommand{\primeiroassina}[1]{\renewcommand{\ABNTprimeiroassinadata}{#1}}
+
+\providecommand{\ABNTsegundoassinadata}{}
+\newcommand{\segundoassina}[1]{\renewcommand{\ABNTsegundoassinadata}{#1}}
+
+\providecommand{\ABNTterceiroassinadata}{}
+\newcommand{\terceiroassina}[1]{\renewcommand{\ABNTterceiroassinadata}{#1}}
+
+\providecommand{\ABNTquartoassinadata}{}
+\newcommand{\quartoassina}[1]{\renewcommand{\ABNTquartoassinadata}{#1}}
+
+\providecommand{\ABNTlocaldiadata}{}
+\newcommand{\localdia}[1]{\renewcommand{\ABNTlocaldiadata}{#1}}
+
+\newcommand{\termodeaprovacao}{
+\begin{titlepage}
+%
+%\pretextualchapter{Termo de Aprovação}
+%\vspace{-0.25cm}
+%
+\begin{center}
+	\large\ABNTautordata
+\end{center}
+
+\begin{center}
+	\textbf{\large PondiônsTracker: A framework based on GTFS-RT \\to identify delays and estimate arrivals dynamically in
+\\Public Transportation Network}%\ABNTtitulodata}}
+\end{center}
+
+\vspace{0.75cm}
+
+\hspace{.4\textwidth}
+\begin{minipage}{.45\textwidth}
+	\begin{espacosimples}
+		\noindent\ABNTtextoaprovacaodata\par
+	\end{espacosimples}
+\end{minipage}
+
+\setlength{\ABNTsignthickness}{0.4pt}
+\setlength{\ABNTsignskip}{2.75cm}
+
+\ABNTifnotempty{\ABNTprimeiroassinadata}%
+{%
+  \begin{center}
+    \vspace{-0.5cm}
+    \assinatura{\ABNTprimeiroassinadata}
+  \end{center}
+}
+\ABNTifnotempty{\ABNTsegundoassinadata}%
+{%
+  \begin{center}
+    \vspace{-0.5cm}
+    \assinatura{\ABNTsegundoassinadata}
+  \end{center}
+}
+\ABNTifnotempty{\ABNTterceiroassinadata}%
+{%
+  \begin{center}
+    \vspace{-0.5cm}
+    \assinatura{\ABNTterceiroassinadata}
+  \end{center}
+}
+\ABNTifnotempty{\ABNTquartoassinadata}%
+{%
+  \begin{center}
+    \vspace{-0.5cm}
+    \assinatura{\ABNTquartoassinadata}
+  \end{center}
+}
+
+\vfill
+
+\begin{center}
+	\ABNTlocaldiadata
+\end{center}
+
+\end{titlepage}
+}
+

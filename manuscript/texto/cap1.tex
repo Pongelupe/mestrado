@@ -1,0 +1,105 @@
+% Nome do capítulo
+\chapter{Introduction}
+% Label para referenciar
+\label{cap1}
+
+% Diminuir espaçamento entre título e texto
+\vspace{-1.9cm}
+
+% Texto do capítulo
+
+A smart city \ac{PTN} provides mobility services to
+millions of people daily. This is far from being a trivial task. Many major cities have hundreds of bus lines operating every day.
+The complexity and importance of this network
+have been a study object for a long time, and to create and 
+manage the schedules, many approaches could use
+manual or computational methods. 
+The many computational 
+methods work with the \ac{GTFS} \cite{GTFS}
+and its real-time extension, 
+\ac{GTFS-RT} \cite{GTFS-RT}
+which are industry standard specifications for sharing schedules and
+associated geographic information.
+
+On the one hand, GTFS represents the static data of the PTN and its 
+main entities are the trips, routes, stops, stop times, and fares. 
+Thus, this specification has been promoting research in multiple fields, 
+such as creating multimodal applications, 
+ridesharing, and data visualization 
+\cite{GTFSExemples}.
+On the other hand, GTFS-RT introduced
+a whole new dimension with real-time updates from trips,
+services, and vehicle positions. With GTFS-RT,
+many researchers could take a deep dive into 
+new topics of question, such as measures of disparities in service provision, temporal
+variability, the role of relative travel times and costs in mode choice
+\cite{GTFS-RT_delays_2017, GTFS-RT_delays_2022, GTFS-RT_delays_2022-ADWIN}.
+
+Both GTFS and GTFS-RT specifications are based on open data, which
+the \ac{OKF} \cite{okf} defines as
+"open data and content can be freely used, modified, 
+and shared by anyone for any purpose." Some cities provide
+their open data through {\em open data portals}, which aggregate
+a wide range of
+datasets, such as urban planning, health, and tourism \cite{opendata}.
+These cities, which use their data to enable political efficiency and social and 
+cultural development for their citizens, are considered smart cities \cite{smart_cities_SLR}.
+Many smart cities follow OKF's mission "to create a free, fair, and open future, advancing open knowledge 
+as a design principle beyond just data." These portals have been contributing
+to the massive popularity of these specifications.
+
+In order to work with the huge volume of data daily produced in smart cities, 
+urban computing provides a toolkit to handle acquisition, integration, and 
+analysis of the data from multiple sources \cite{urban_computing}.
+Regarding the PTN, these tools aim to improve the human mobility
+of the citizens by creating models based on individuals' movement patterns.
+So, one common approach is to model the PTN as a complex network, in which 
+the bus stops represent the nodes set, and the edges set is represented 
+by the arcs connecting two nodes, in other words, the streets \cite{ferber2012}. 
+This modeling also embraces PTN's additional information about the
+sets previously mentioned, information as bus coordinates and delays.
+The fact that the PTN is updated, and basically, every new data input
+from hundreds of buses around a city
+expresses the complexity of this network.
+
+Although the qualitative leap with the GTFS-RT specification, GTFS-RT
+is not as well-adopted as the GTFS. One may associate this condition with
+the lack of real-time data, but many major cities supply both datasets.
+\citeonline{delays_bigdata} describe this scenario for Rome back in 2016
+and \citeonline{routableTimetableGTFS} identified and proposed a method to 
+shorten this gap for Toronto in 2017. This issue occurs mainly due to the 
+ownership of the data, transit agencies, commonly, provide the real-time data, and the government, the static data. 
+This leads to the situation where there is no matching identifier 
+between the two datasets.
+
+Yet in 2023,
+GTFS-RT is unavailable for many major cities due 
+to the matching identifier issue. Then,
+in this thesis, we propose \textit{PondiônsTracker}, a framework
+to enrich GTFS data with real-time data enabling { \em collecting } and { \em integrating }. \textit{PondiônsTracker} is designed to work with as many cities as possible, so its components
+are replaceable and have their behaviors defined in interfaces. Thus, we
+introduce \textit{PondiônsTracker-BH}, which is a specialization to deal with
+Belo Horizonte's PTN and to reproduce delay analysis because Belo Horizonte supplies the GTFS and real-time data 
+despite not providing GTFS-RT.
+
+
+
+
+\section{Objectives}
+The main objective of this master's dissertation is 
+proposing and validating PondiônsTracker, which is a framework to identify delays
+and improve the estimated arrival task
+in Public Transportation Networks in cities with buses, real-time data, and GTFS. So, 
+reach the main objective, we use Belo Horizonte's data with the following specific objectives:
+\begin{enumerate*}
+    \item Collecting data from the real-time API and combining with the GTFS;
+    \item Understanding if Belo Horizonte's delays are spatial and temporal dependent by analyzing delays among bus stops;
+    \item Comparing the arrival times defined at the GTFS with the arrival times generated by \textit{PondiônsTracker-BH};
+\end{enumerate*}
+
+\section{Master Thesis Structure}
+This master thesis is organized as follows. In Chapter 2, we present the 
+theoretical reference, then we discuss the related work. Next, 
+we describe the methodology used to build PondiônsTracker in Chapter 4.
+In Chapter 5, we present the results using PondiônsTracker to Belo Horizonte.
+Finally, we discuss our conclusions and future work.
