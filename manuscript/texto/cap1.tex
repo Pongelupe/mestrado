@@ -9,7 +9,7 @@
 % Texto do capítulo
 
 A smart city \ac{PTN} provides mobility services to
-millions of people daily. This is far from being a trivial task. Many major cities have hundreds of bus lines operating every day.
+millions of people daily. This is far from being a trivial task because many major cities have hundreds of bus lines operating every day.
 The complexity and importance of this network
 have been a study object for a long time, and to create and 
 manage the schedules, many approaches could use
@@ -29,9 +29,7 @@ ridesharing, and data visualization
 \cite{GTFSExemples}.
 On the other hand, GTFS-RT introduced
 a whole new dimension with real-time updates from trips,
-services, and vehicle positions. With GTFS-RT,
-many researchers could take a deep dive into 
-new topics of question, such as measures of disparities in service provision, temporal
+services, and vehicle positions. With GTFS-RT new research topics were introduced, such as measures of disparities in service provision, temporal
 variability, the role of relative travel times and costs in mode choice
 \cite{GTFS-RT_delays_2017, GTFS-RT_delays_2022, GTFS-RT_delays_2022-ADWIN}.
 
@@ -64,23 +62,25 @@ expresses the complexity of this network.
 
 Although the qualitative leap with the GTFS-RT specification, GTFS-RT
 is not as well-adopted as the GTFS. One may associate this condition with
-the lack of real-time data, but many major cities supply both datasets.
+the lack of real-time data, but the issue occurs mainly due to the ownership of the data.
+Then, transit agencies provide real-time data, and the government provides the static data, commonly, 
+leading to the situation where there is no matching identifier 
+between the two datasets.In other words, many cities have {\em both} GTFS and a real-time service 
+but does not have GTFS-RT. This issue was named as {\em no matching identifier issue} and
+for instance, 
 \citeonline{delays_bigdata} describe this scenario for Rome back in 2016
 and \citeonline{routableTimetableGTFS} identified and proposed a method to 
-shorten this gap for Toronto in 2017. This issue occurs mainly due to the 
-ownership of the data, transit agencies, commonly, provide the real-time data, and the government, the static data. 
-This leads to the situation where there is no matching identifier 
-between the two datasets.
+shorten this gap for Toronto in 2017. 
 
 Yet in 2023,
 GTFS-RT is unavailable for many major cities due 
-to the matching identifier issue. Then,
-in this thesis, we propose \textit{PondiônsTracker}, a framework
-to enrich GTFS data with real-time data enabling { \em collecting } and { \em integrating }. \textit{PondiônsTracker} is designed to work with as many cities as possible, so its components
-are replaceable and have their behaviors defined in interfaces. Thus, we
-introduce \textit{PondiônsTracker-BH}, which is a specialization to deal with
-Belo Horizonte's PTN and to reproduce delay analysis because Belo Horizonte supplies the GTFS and real-time data 
-despite not providing GTFS-RT.
+to the no matching identifier issue. Then,
+in this dissertation, we propose \textit{PondiônsTracker}, a framework
+to enrich GTFS data with real-time data to mitigate this issue. 
+\textit{PondiônsTracker} is designed to work with as many cities as possible, so its components
+are replaceable and have their behaviors defined in interfaces. Thus, we validate our hypothesis that
+\textit{PondiônsTracker} mitigates the no matching identifier issue using Belo Horizonte's
+data which also has the issue.
 
 
 

@@ -6,11 +6,11 @@
 \onehalfspacing
 \noindent
 
-A smart city \ac{PTN} provides mobility services to millions of people daily. 
+A smart city Public Transportation Network provides mobility services to millions of people daily. 
 Urban computing provides a
 toolkit to handle acquisition, integration, and analysis, which translates to the improvement of the human mobility
 of the citizens, mitigating and notifying delays, for instance.
-Regarding the PTN, many methods rely on two specifications: \ac{GTFS} and \ac{GTFS-RT}. The first represents the static schedule information, and the second introduces real-time updates from trips, services, and vehicle positions. Despite the qualitative leap with the GTFS-RT specification, GTFS-RT
+Regarding the PTN, many methods rely on two specifications: \textit{General Transit Feed Specification} (GTFS) and \textit{General Transit Feed Specification Real-Time} (GTFS-RT). The first represents the static schedule information, and the second introduces real-time updates from trips, services, and vehicle positions. Despite the qualitative leap with the GTFS-RT specification, GTFS-RT
 is not as well-adopted as the GTFS because of the non-existence of a matching identifier between the static and real-time data. In this context, we present \textit{PondiônsTracker}\footnote{Available at \url{https://github.com/Pongelupe/PondionsTracker/}} which is a {\em loose coupling} Java framework designed for enriching GTFS data with real-time data to enable delays analysis and to estimate arrivals. So, we present \textit{PondiônsTracker-BH}\footnote{Available at \url{https://github.com/Pongelupe/PondionsTracker-BH}} that is a \textit{PondiônsTracker}'s specialization created to
 deal with Belo Horizonte's PTN particularities originating from Belo Horizonte's real-time \ac{API} 
 which we collected every minute for eleven days straight in July and August 2023, summarizing over 246 million entries 
