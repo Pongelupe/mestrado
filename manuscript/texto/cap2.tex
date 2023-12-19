@@ -186,7 +186,7 @@ some graphs concepts.
 a compound of atomic information pieces and a relational nature, as the links
 defining its structure denote relationships between the linked entities".
 To formally define a graph, the mathematical notation is  \textit{$g = (V_g, E_g, X_g, A_g)$}
-where $V_g$ a set of {\em vertexes} and $E_g$ is a set of {\em edges}, or {\em arcs} 
+where $V_g$ is a set of {\em vertexes} and $E_g$ is a set of {\em edges}, or {\em arcs} 
 connecting a couple of nodes \cite{graph}. Two more sets, $X_g$ and $A_g$, represent additional information on the node set and the edges set, respectively. In other words, the nodes and edges in some applications have extra features. So, each node $u \in |V_g|$
 has a unique feature vector associated therefore, each edge is associated with 
 and feature vector $a_{uv} \in A_g$. 
@@ -224,13 +224,14 @@ during a day, for instance. And,
 $A_g$ contains the bus entries collected between two sequenced bus stops, $B_x$ and 
 $B_{x+1}$. In other words, that is all the information provided by a bus while
 traveling through any arc $e$ of $E_g$.
-
-
 The graph $G$ is a {\em dynamic} graph because the routes change over the days, so the structure of this graph is not fixed.
 But, when we approach this graph in a defined time interval, it has a {\em static} topology because the bus stop locations and routes
-are not on the same day. Thus, this graph can be
+are not on the same day. The field called $service\_id$ from the GTFS defines the routes for a given day, so this field defines
+the topology of the graph and the graph can be approached in a static way for the same $service\_id$, our analysis in Chapter 5 are based on this premise.
+
+Thus, this graph can be
 modeled using two data groups, static data, and RT data.
 The first group is represented by the GTFS data which is used to generate $V_g$ and
-$E_g$ sets, since both sets do not change over the delimited time interval. The second group of data is represented by the real-time bus entries producing $X_g$ and $A_g$ sets, which change over the delimited time interval, meaning
+$E_g$ sets, since both sets do not change over the delimited time interval. The second group of data is represented by the real-time bus entries producing $X_g$ and $A_g$ sets, which change over the delimited time interval due to the $service\_id$, meaning
 that the traffic will be different on Monday than Tuesday, for example. 
 
