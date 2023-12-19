@@ -633,8 +633,6 @@ of the calculus executed.
 
 
 
-%TODO flag%
-
 \subsection{Integration Driver}
 The { \em Integration Driver} is the component that is composed, directly or indirectly, by the other components 
 discussed in this Section to drive the execution from simple inputs as the $route\_short\_name$ and a target date
@@ -655,7 +653,9 @@ for each component that is not overwritten by the user building a new instance.
     \end{figure}
 
 Figure \ref{img:4:integrationDriverAD} shows the activity diagram of the \textit{integrate} method, which starts manipulating
-the static data, then the real-time data, and finally, linking the two datasets. The first step
+the static data, then the real-time data, and finally, linking the two datasets. Also, Figure \ref{img:4:integrationDriverAD} 
+also provides a high level point-of-view of the process to connect the datasets
+.The first step
 is to retrieve the \textit{Route} which is provided by the \textit{GTFSService} \textit{getRouteByRouteShortName}
 method. Next, if the expected time at each bus stop for every \textit{Trips} of that
 \textit{Route} is missing, then, before proceeding,
