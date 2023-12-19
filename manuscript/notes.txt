@@ -4,9 +4,8 @@
 • There is no important issues like Hypothesis, research questions, etc.
     [x] I have rewritten the two last paragraphs in the Introduction section (1)
 
-• Maybe, the manuscript could be restructured since there is a merge of content (methodology and
-method).
-    [ ] I have moved section PondionsTracker-BH (4.4) and its subsections to the Results chapter. So, now this section is the first section of the Results.  
+• Maybe, the manuscript could be restructured since there is a merge of content (methodology and method).
+    [x] OK  
 
 • The size of chapters, in terms of number of pages, is an important measure to be considered.
     [x] OK
