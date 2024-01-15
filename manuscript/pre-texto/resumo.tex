@@ -7,20 +7,14 @@
 \onehalfspacing
 
 \noindent 
-  O ano de 2020 vem sendo marcado pelo espalhamento em níveis globais de uma nova doença
-  infecciosa, a COVID-19. Técnicas de computação urbana vem sendo empregadas para amenizar
-  os danos sociais gerados pela pandemia, como utilização de rastreio de contato
-  para medidas de isolamento social menos abruptas. Este projeto explorará evidências relacionadas aos 
-  boletins epidemiológicos e dados de mobilidade para analisar a transmissão e disseminação
-  da COVID-19 e propor medidas que minimizem os impactos da doença na sociedade. As análises
-  buscam suavizar as medidas de isolamento social e planejamento do transporte urbano na cidade,
-  assim propondo um método de rastreio de contatos.
+A Rede de Transporte Público de uma cidade inteligente provê serviços para milhoẽs de pessoas diariamente. A computação urbana disponibiliza um ferramental para realizar aquisição, integração e análise desse grande volume de dados gerados traduzindo-se em uma melhoria da mobilidade humana do cidadões sendo por notificar atrasos ou mitiga-los, por exemplo. Sobre a Rede de Transporte Público, muitos métodos são baseados em duas especidicações: General Transit Feed Specification (GTFS) e General Transit Feed Specification Real-Time (GTFS-RT). A primeira representa as informações estáticas sobre o cronograma das viagens e a segunda especificação introduz atualizações em tempo-real sobre viagens, serviços e posição dos veículos. Apesar do salto qualitativo com o GTFS-RT, esta especificaçãop não é tão bem adotada quanto o GTFS devido a inexistência de um identificador que conecte os dados estáticos e os de tempo-real. Nesse contexto, essa dissertação apresenta PondiônsTracker que é um framework Java de baixo acoplamento que enriquece o GTFS com os dados de tempo-real, possibilitando análise de atrasos e estimação de chegadas dinamicamente. Então, é criado o PondiônsTracker-BH que uma especialização para lidar com a Rede de Transporte Público de Belo Horizonte, qual foi coletado registros por onze dias em sequência entre Julho e Agosto de 2023, totalizando mais de 246 milhões de registros representando quase 30 Gigabytes. PondiônsTracker-BH teve 76.08% das viagens agendadas correspondidas com as coletadas durante o período observado. As 156.628 viagens correspondidas apontam a concetração de atrasos na cidade e que esses atrasos 
+possuem uma relação espacial e temporal, além disso, eles seguem uma distribuição log-normal pela rede. Em outras palavras, a maioria dos atrasos da Rede de Transporte Público em Belo Horizonte acontecem em poucos pontos de ônibus, esses pontos estão próximos entre si e compartilham os mesmos padrões temporais.
 
 % Espaçamento para as palavras-chave
 \vspace*{.75cm}
 
 % Palavras-chave: sem parágrafo, alinhado à esquerda
-\noindent Palavras-chave: Computação Urbana, Mobilidade, Saúde, Redes Complexas
+\noindent Palavras-chave: Computação Urbana, Mobilidade Humana, Redes Complexas, Rede de Transporte Público
 % Segunda linha de palavras-chave, com espaçamento.
 %\indent\hspace{2cm}Palavra.
 
